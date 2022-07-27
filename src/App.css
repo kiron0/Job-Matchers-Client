@@ -1,6 +1,4 @@
 html {
-  margin: 0;
-  padding: 0;
   --scrollbarBG: #e8eaf6;
   --thumbBG: #2a2a57;
 }
@@ -14,6 +12,7 @@ body {
   height: 100vh;
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+  overflow: hidden !important;
 }
 
 body::-webkit-scrollbar-track {
@@ -60,7 +59,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .App-header {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
