@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom";
-import auth from "../Firebase/Firebase.config";
+import auth from "../../Firebase/Firebase.config";
 
 const RequireAuth = ({ children }) => {
   const location = useLocation();

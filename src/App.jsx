@@ -10,7 +10,10 @@ import Login from "./Pages/Login/Login/Login";
 import SignUp from "./Pages/Login/SignUp/SignUp";
 import ResetPassword from "./Pages/Login/ResetPassword/ResetPassword";
 import NotFound from "./Shared/NotFound/NotFound";
-export const InitializeContext = createContext(null)
+import RequireAuth from "./Auth/RequireAuth/RequireAuth";
+import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
+import WelcomeDashboard from "./Pages/Dashboard/WelcomeDashboard/WelcomeDashboard";
+export const InitializeContext = createContext(null);
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -33,19 +36,35 @@ function App() {
   }, []);
   return (
     <div data-theme={theme && "night"}>
-    <InitializeContext.Provider value={{handleThemeChange, theme}}>
-    <Navbar />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signUp" element={<SignUp />} />
-      <Route path="/resetPassword" element={<ResetPassword />} />
-      <Route path="*" element={<NotFound />}></Route>
-      </Routes>
-    <ScrollButton />
-    <Toaster />
-    </InitializeContext.Provider>
-  </div>
+      <InitializeContext.Provider value={{ handleThemeChange, theme }}>
+        {loading ? (
+          <div id="preloader">
+            <div id="loader"></div>
+          </div>
+        ) : (
+          <Navbar />
+        )}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/resetPassword" element={<ResetPassword />} />
+          <Route
+            path="/dashboard"
+            element={
+              <RequireAuth>
+                <Dashboard />
+              </RequireAuth>
+            }
+          >
+            <Route index element={<WelcomeDashboard />} />
+          </Route>
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+        <ScrollButton />
+        <Toaster />
+      </InitializeContext.Provider>
+    </div>
   );
 }
 
