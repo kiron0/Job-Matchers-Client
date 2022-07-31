@@ -13,6 +13,7 @@ import NotFound from "./Shared/NotFound/NotFound";
 import RequireAuth from "./Auth/RequireAuth/RequireAuth";
 import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
 import WelcomeDashboard from "./Pages/Dashboard/WelcomeDashboard/WelcomeDashboard";
+import Profile from "./Pages/Dashboard/Profile/Profile";
 export const InitializeContext = createContext(null);
 
 function App() {
@@ -38,8 +39,15 @@ function App() {
     <div data-theme={theme && "night"}>
       <InitializeContext.Provider value={{ handleThemeChange, theme }}>
         {loading ? (
-          <div id="preloader">
-            <div id="loader"></div>
+          <div
+            id="preloader"
+            className="flex justify-center items-center h-screen"
+          >
+            <img
+              src="https://i.ibb.co/Jjjj2t2/circle-loader-gif-2.gif"
+              className="w-full md:w-[22rem] lg:w-[21rem]"
+              alt=""
+            />
           </div>
         ) : (
           <Navbar />
@@ -58,6 +66,7 @@ function App() {
             }
           >
             <Route index element={<WelcomeDashboard />} />
+            <Route path="profile" element={<Profile />} />
           </Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
