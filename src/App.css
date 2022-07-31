@@ -12,7 +12,6 @@ body {
   height: 100vh;
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
-  overflow: hidden !important;
 }
 
 body::-webkit-scrollbar-track {
