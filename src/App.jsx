@@ -38,22 +38,16 @@ function App() {
   return (
     <div data-theme={theme && "night"}>
       <InitializeContext.Provider value={{ handleThemeChange, theme }}>
-        {loading ? (
-          <div
-            id="preloader"
-            className="flex justify-center items-center h-screen"
-          >
-            <img
-              src="https://i.ibb.co/Jjjj2t2/circle-loader-gif-2.gif"
-              className="w-full md:w-[22rem] lg:w-[21rem]"
-              alt=""
-            />
-          </div>
-        ) : (
-          <Navbar />
-        )}
+        {/* <Navbar /> */}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={
+              <RequireAuth>
+                <Dashboard />
+              </RequireAuth>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
